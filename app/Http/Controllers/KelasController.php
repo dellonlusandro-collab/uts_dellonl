@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Jurusan;
+use App\Models\Kelas;
 use Illuminate\Http\Request;
 
-class JurusanController extends Controller
+class KelasController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        // SELECT ALL
+        $kelas = Kelas::all();
+
+        return view('kelas.index', compact('kelas'));
     }
 
     /**
@@ -20,7 +22,20 @@ class JurusanController extends Controller
      */
     public function create()
     {
-        //
+        // contoh dummy dropdown
+        $mata_kuliah = [
+            1 => 'Bisnis Digital',
+            2 => 'Sistem Teknologi dan Informasi',
+            3 => 'Kewirausahaan'
+        ];
+
+        $dosen = [
+            1 => 'Kevin',
+            2 => 'Jonathan',
+            3 => 'Aprianto'
+        ];
+
+        return view('kelas.create', compact('mata_kuliah', 'dosen'));
     }
 
     /**
@@ -28,38 +43,34 @@ class JurusanController extends Controller
      */
     public function store(Request $request)
     {
-        // SAVE DATA
-    }
+        $request->validate([
+            'kode_kelas' => 'required',
+            'kode_mata_kuliah' => 'required',
+            'kode_dosen' => 'required',
+            'hari' => 'required',
+            'jam' => 'required',
+            'tahun_ajaran' => 'required',
+            'ruang_kelas' => 'required',
+            'jumlah_max' => 'required',
+            'semester' => 'required'
+        ]);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Jurusan $jurusan)
-    {
-        // SELECT SPESIFIK
-    }
+        Kelas::create($request->all());
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Jurusan $jurusan)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Jurusan $jurusan)
-    {
-        // UPDATE DATA
+        return redirect('/kelas')
+            ->with('success', 'Data kelas berhasil ditambahkan');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Jurusan $jurusan)
+    public function destroy(string $id)
     {
-        // DELETE DATA
+        $kelas = Kelas::findOrFail($id);
+
+        $kelas->delete();
+
+        return redirect('/kelas')
+            ->with('success', 'Data kelas berhasil dihapus');
     }
 }

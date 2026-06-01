@@ -1,64 +1,51 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-  </head>
-  <body>
-        <form action="{{ route('dosen.update', $dosen->id) }}" method="post">       
-        @csrf
-        @method('PUT')
-        <table class="table table-success table-striped-columns">
+<html>
+        <form action="{{ action([App\Http\Controllers\DosenController::class, 'update'], [$dosen->id]) }}" method="post">
+        <input type="hidden" name="_method" value="PUT">
+        <table>
+            @csrf
             <tr>
                 <td>Nama Lengkap</td>
                 <td>:</td>
-                <td><input type="text" name="Fullname" value="{{$dosen->Fullname}}"></td>
+                <td><input type="text" name="fullname" value="{{$dosen->fullname}}" size="30"></td>
             </tr>
-            <tr>
-                <td>Nomor Induk Pegawai</td>
+             <tr>
+                <td>Nomor Induk Pengajar</td>
                 <td>:</td>
-                <td><input type="text" name="NIP" value="{{$dosen->NIP}}"></td>
+                <td><input type="text" name="NIP" value="{{$dosen->NIP}}" size="30"></td>
             </tr>
-            <tr>
+             <tr>
                 <td>Nomor Induk Dosen Nasional</td>
                 <td>:</td>
-                <td><input type="text" name="NIDN" value="{{$dosen->NIDN}}"></td>
+                <td><input type="text" name="NIDN" value="{{$dosen->NIDN}}" size="30"></td>
             </tr>
             <tr>
-                <td>Pendidikan Terakhirr</td>
+                <td>Pendidikan Terakhir</td>
                 <td>:</td>
-                <td><input type="text" name="Pendidikan_Terakhir" value="{{$dosen->Pendidikan_Terakhir}}"></td>
-            </tr>
-              <tr>
-                <td>Jurusan</td>
-                <td>:</td>
-                <td><input type="text" name="Jurusan_id" value="{{$dosen->Jurusan_id}}"></td>
+                <td><input type="text" name="pendidikan_terakhir" value="{{$dosen->NIDN}}" size="30"></td>
             </tr>
             <tr>
+                <td>Jurusan Id</td>
+                <td>:</td>
+                <td><input type="text" name="jurusan_id" value="{{$dosen->NIDN}}" size="30"></td>
+            </tr>
+             <tr>
                 <td>Tempat Lahir</td>
                 <td>:</td>
-                <td><input type="text" name="Tempat_Lahir" value="{{$dosen->Tempat_Lahir}}"></td>
+                <td><input type="text" name="tempat_lahir" value="{{$dosen->tempat_lahir}}" size="30"></td>
             </tr>
-            <tr>
+             <tr>
                 <td>Tanggal Lahir</td>
                 <td>:</td>
-                <td><input type="date" name="Tanggal_Lahir" value="{{$dosen->Tanggal_Lahir}}"></td>
+                <td><input type="date" name="tanggal_lahir" value="{{$dosen->tanggal_lahir}}" size="30"></td>
             </tr>
-            <tr>
+             <tr>
                 <td>Alamat</td>
                 <td>:</td>
-                <td><textarea name="Alamat">{{$dosen->Alamat}}</textarea></td>
-            </tr>
-            <tr>
-                <td colspan="3">
-                    <input type="submit" value="Update">
-                    <input type="reset" value="Clear">
-                </td>
+                <td><textarea name="Alamat" rows="4" cols="30">{{$dosen->alamat}}</textarea></td>
             </tr>
         </table>
+        <button type="submit">Add</button>
+        <button type="reset">Clear</button>
     </form>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-  </body>
+    </body>
 </html>
