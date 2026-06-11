@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit65e85f9f959c0b087110331754d451cf
+class ComposerStaticInit3b7195ada1b61f91cd00fd30ef952ce4
 {
     public static $files = array (
         '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
@@ -632,11 +632,13 @@ class ComposerStaticInit65e85f9f959c0b087110331754d451cf
         'App\\Http\\Controllers\\DosenController' => __DIR__ . '/../..' . '/app/Http/Controllers/DosenController.php',
         'App\\Http\\Controllers\\JurusanController' => __DIR__ . '/../..' . '/app/Http/Controllers/JurusanController.php',
         'App\\Http\\Controllers\\KelasController' => __DIR__ . '/../..' . '/app/Http/Controllers/KelasController.php',
+        'App\\Http\\Controllers\\KrsController' => __DIR__ . '/../..' . '/app/Http/Controllers/KrsController.php',
+        'App\\Http\\Controllers\\KrsDetailController' => __DIR__ . '/../..' . '/app/Http/Controllers/KrsDetailController.php',
         'App\\Http\\Controllers\\MahasiswaController' => __DIR__ . '/../..' . '/app/Http/Controllers/MahasiswaController.php',
-        'App\\Models\\Dosen' => __DIR__ . '/../..' . '/app/Models/Dosen.php',
-        'App\\Models\\MataKuliah' => __DIR__ . '/../..' . '/app/Models/MataKuliah.php',
+        'App\\Http\\Controllers\\MatakuliahController' => __DIR__ . '/../..' . '/app/Http/Controllers/MatakuliahController.php',
+        'App\\Models\\Krs' => __DIR__ . '/../..' . '/app/Models/Krs.php',
+        'App\\Models\\KrsDetail' => __DIR__ . '/../..' . '/app/Models/KrsDetail.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
-        'App\\Models\\jurusan' => __DIR__ . '/../..' . '/app/Models/jurusan.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'Brick\\Math\\BigDecimal' => __DIR__ . '/..' . '/brick/math/src/BigDecimal.php',
@@ -8128,9 +8130,9 @@ class ComposerStaticInit65e85f9f959c0b087110331754d451cf
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit65e85f9f959c0b087110331754d451cf::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit65e85f9f959c0b087110331754d451cf::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit65e85f9f959c0b087110331754d451cf::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit3b7195ada1b61f91cd00fd30ef952ce4::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit3b7195ada1b61f91cd00fd30ef952ce4::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit3b7195ada1b61f91cd00fd30ef952ce4::$classMap;
 
         }, null, ClassLoader::class);
     }

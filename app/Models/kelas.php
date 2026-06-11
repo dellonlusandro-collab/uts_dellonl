@@ -2,21 +2,33 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Kelas extends Model
 {
-    protected $table ='table_dosen';
+    protected $table = 'kelas';
 
     protected $fillable = [
-        'Fullname',
-        'NIP',
-        'NIDN',
-        'Pendidikan_Terakhir',
-        'Jurusan_id',
-        'Tempat_Lahir',
-        'Tanggal_Lahir',
-        'Alamat'
+        'kode_kelas',
+        'kode_mata_kuliah',
+        'kode_dosen',
+        'hari',
+        'jam',
+        'tahun_ajaran',
+        'ruang_kelas',
+        'jumlah_max',
+        'semester'
     ];
+
+    // Relasi ke dosen
+    public function dosen()
+    {
+        return $this->belongsTo(Dosen::class, 'kode_dosen');
+    }
+
+    // Relasi ke mata kuliah
+    public function matakuliah()
+    {
+        return $this->belongsTo(Matakuliah::class, 'kode_mata_kuliah');
+    }
 }

@@ -3,44 +3,33 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kelas;
+use App\Models\Dosen;
+use App\Models\Matakuliah;
 use Illuminate\Http\Request;
 
 class KelasController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    // Halaman index
     public function index()
     {
-        $kelas = Kelas::all();
+        $kelas = Kelas::with(['dosen', 'matakuliah'])->get();
 
         return view('kelas.index', compact('kelas'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    // Halaman form tambah
     public function create()
     {
-        // contoh dummy dropdown
-        $mata_kuliah = [
-            1 => 'Bisnis Digital',
-            2 => 'Sistem Teknologi dan Informasi',
-            3 => 'Kewirausahaan'
-        ];
+        $dosen = Dosen::all();
+        $matakuliah = Matakuliah::all();
 
-        $dosen = [
-            1 => 'Kevin',
-            2 => 'Jonathan',
-            3 => 'Aprianto'
-        ];
-
-        return view('kelas.create', compact('mata_kuliah', 'dosen'));
+        return view('kelas.create', compact(
+            'dosen',
+            'matakuliah'
+        ));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    // Simpan data
     public function store(Request $request)
     {
         $request->validate([
@@ -52,25 +41,31 @@ class KelasController extends Controller
             'tahun_ajaran' => 'required',
             'ruang_kelas' => 'required',
             'jumlah_max' => 'required',
-            'semester' => 'required'
+            'semester' => 'required',
         ]);
 
-        Kelas::create($request->all());
+        Kelas::create([
+            'kode_kelas' => $request->kode_kelas,
+            'kode_mata_kuliah' => $request->kode_mata_kuliah,
+            'kode_dosen' => $request->kode_dosen,
+            'hari' => $request->hari,
+            'jam' => $request->jam,
+            'tahun_ajaran' => $request->tahun_ajaran,
+            'ruang_kelas' => $request->ruang_kelas,
+            'jumlah_max' => $request->jumlah_max,
+            'semester' => $request->semester,
+        ]);
 
         return redirect('/kelas')
             ->with('success', 'Data kelas berhasil ditambahkan');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    // Hapus kelas
+    public function destroy($id)
     {
-        $kelas = Kelas::findOrFail($id);
-
-        $kelas->delete();
+        Kelas::findOrFail($id)->delete();
 
         return redirect('/kelas')
-            ->with('success', 'Data kelas berhasil dihapus');
+            ->with('success', 'Kelas berhasil dihapus');
     }
 }

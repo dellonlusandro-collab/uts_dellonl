@@ -15,20 +15,19 @@ return new class extends Migration
             $table->id();
             $table->string('kode_kelas');
 
-            $table->integer('kode_mata_kuliah');
-            $table->integer('kode_dosen');
+            
 
             $table->enum('hari', [
-                'Senin',
-                'Selasa',
-                'Rabu',
-                'Kamis',
-                'Jumat'
+                'senin',
+                'selasa',
+                'rabu',
+                'kamis',
+                'jumat'
             ]);
 
             $table->enum('jam', [
-                '07:00 - 08:40',
-                '08:50 - 11:30',
+                '08:00 - 09:40',
+                '09:50 - 11:30',
                 '12:30 - 14:10',
                 '17:00 - 18:40',
                 '19:00 - 20:40'
@@ -36,9 +35,7 @@ return new class extends Migration
 
             $table->string('tahun_ajaran');
             $table->string('ruang_kelas');
-
             $table->integer('jumlah_max');
-
             $table->integer('jumlah_mahasiswa')->default(0);
 
             $table->enum('semester', [
@@ -48,6 +45,16 @@ return new class extends Migration
 
             $table->timestamps();
 
+            // Foreign Key
+            $table->foreignId('kode_dosen')
+                ->constrained('table_dosen')
+                ->cascadeOnDelete();
+
+            $table->foreignId('kode_mata_kuliah')
+                ->constrained('table_matakuliah')
+                ->cascadeOnDelete();
+
+            // Unique Constraint
             $table->unique([
                 'kode_dosen',
                 'hari',
