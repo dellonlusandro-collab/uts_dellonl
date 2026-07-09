@@ -1,58 +1,99 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-  </head>
-  <body>
-    <form action="{{route('dosen.save')}}"  method="post">
-        @csrf
-        <table class="table table-dark table-striped-columns">
-            <tr>
-                <td>Nama Lengkap</td>
-                <td>:</td>
-                <td><input type="text" name="Fullname"></td>
-            </tr>
-            <tr>
-                <td>Nomor Dosen</td>
-                <td>:</td>
-                <td><input type="text" name="ND"></td>
-            </tr>
-            <tr>
-                <td>Tempat Lahir</td>
-                <td>:</td>
-                <td><input type="text" name="Tempat_Lahir"></td>
-            </tr>
-            <tr>
-                <td>Tanggal Lahir</td>
-                <td>:</td>
-                <td><input type="text" name="Tanggal_Lahir"></td>
-            </tr>
- <tr>
-                <td>Pendidikan Terakhir</td>
-                <td>:</td>
-                <td><input type="text" name="Pendidikan_Terakhir"></td>
-            </tr>
-             <tr>
-                <td>Jurusan</td>
-                <td>:</td>
-                <td><input type="text" name="Jurusan"></td>
-            </tr>
-            <tr>
-                <td>Alamat</td>
-                <td>:</td>
-                <td><textarea name="Alamat"></textarea></td>
-            </tr>
-            <tr>
-                <td colspan="3">
-                    <input type="submit" value="Add">
-                    <input type="reset" value="Clear">
-                </td>
-            </tr>
-        </table>
-    </form>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-  </body>
-</html>
+@extends('layouts.app')
+
+@section('content')
+
+<div class="row justify-content-center">
+
+    <div class="col-lg-8">
+
+        <div class="card shadow">
+
+            <div class="card-header bg-success text-white">
+
+                <h4 class="mb-0">
+                    Tambah Data Dosen
+                </h4>
+
+            </div>
+
+            <div class="card-body">
+
+                <form action="{{ route('dosen.save') }}" method="POST">
+
+                    @csrf
+
+                    <div class="mb-3">
+                        <label class="form-label">Nama Lengkap</label>
+                        <input type="text"
+                               name="Fullname"
+                               class="form-control"
+                               required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Nomor Induk Dosen</label>
+                        <input type="text"
+                               name="ND"
+                               class="form-control"
+                               required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Tempat Lahir</label>
+                        <input type="text"
+                               name="Tempat_Lahir"
+                               class="form-control">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Tanggal Lahir</label>
+                        <input type="date"
+                               name="Tanggal_Lahir"
+                               class="form-control">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Pendidikan Terakhir</label>
+                        <input type="text"
+                               name="Pendidikan_Terakhir"
+                               class="form-control">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Jurusan</label>
+                        <input type="text"
+                               name="Jurusan"
+                               class="form-control">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Alamat</label>
+                        <textarea name="Alamat"
+                                  rows="4"
+                                  class="form-control"></textarea>
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+
+                        <a href="/dosen" class="btn btn-secondary">
+                            Kembali
+                        </a>
+
+                        <button type="submit"
+                                class="btn btn-success">
+                            Simpan
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+@endsection

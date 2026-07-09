@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Dosen;
 use Illuminate\Http\Request;
 
-class DosenController
+class DosenController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +34,8 @@ class DosenController
 
         Dosen::create($data);
 
-        return redirect()->action([DosenController::class, 'index']);
+        return redirect()->action([DosenController::class, 'index'])
+            ->with('success', 'Data dosen berhasil ditambahkan.');
     }
 
     /**
@@ -60,11 +61,12 @@ class DosenController
      */
     public function update(Request $request, $id)
     {
-        $data = $request->except('_token');
+        $data = $request->except('_token', '_method', 'id');
 
         Dosen::find($id)->update($data);
 
-        return redirect()->action([DosenController::class, 'index']);
+        return redirect()->action([DosenController::class, 'index'])
+            ->with('success', 'Data dosen berhasil diperbarui.');
     }
 
     /**
@@ -72,8 +74,9 @@ class DosenController
      */
     public function destroy($id)
     {
-        Dosen::find($id)->delete();//
+        Dosen::findOrFail($id)->delete();
 
-        return redirect()->action([DosenController::class, 'index']);
+        return redirect()->action([DosenController::class, 'index'])
+            ->with('success', 'Data dosen berhasil dihapus.');
     }
-    }
+}

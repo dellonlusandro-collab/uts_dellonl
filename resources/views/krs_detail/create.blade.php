@@ -1,68 +1,117 @@
-<form action="/krs-detail/store"
-      method="POST">
+@extends('layouts.app')
 
-    @csrf
+@section('content')
 
-    <label>KRS</label>
-    <br>
+<div class="row justify-content-center">
 
-    <select name="kode_krs">
+    <div class="col-lg-7">
 
-        <option value="">
-            -- Pilih KRS --
-        </option>
+        <div class="card shadow">
 
-        @foreach($krs as $k)
-        <option value="{{ $k->id }}">
-            KRS {{ $k->id }}
-        </option>
-        @endforeach
+            <div class="card-header bg-success text-white">
 
-    </select>
+                <h4 class="mb-0">
+                    Tambah KRS Detail
+                </h4>
 
-    <br><br>
+            </div>
 
-    <label>Kelas</label>
-    <br>
+            <div class="card-body">
 
-    <select name="kode_kelas">
+                <form action="/krs-detail/store" method="POST">
 
-        <option value="">
-            -- Pilih Kelas --
-        </option>
+                    @csrf
 
-        @foreach($kelas as $k)
-        <option value="{{ $k->id }}">
-            {{ $k->kode_kelas }}
-        </option>
-        @endforeach
+                    <div class="mb-3">
 
-    </select>
+                        <label class="form-label">
+                            KRS
+                        </label>
 
-    <br><br>
+                        <select name="kode_krs"
+                                class="form-select"
+                                required>
 
-    <label>Status</label>
-    <br>
+                            <option value="">
+                                -- Pilih KRS --
+                            </option>
 
-    <select name="status">
+                            @foreach($krs as $k)
 
-        <option value="pending">
-            Pending
-        </option>
+                                <option value="{{ $k->id }}">
+                                    KRS #{{ $k->id }}
+                                </option>
 
-        <option value="approved">
-            Approved
-        </option>
+                            @endforeach
 
-        <option value="declined">
-            Declined
-        </option>
+                        </select>
 
-    </select>
+                    </div>
 
-    <br><br>
+                    <div class="mb-3">
 
-    <input type="submit"
-           value="Simpan">
+                        <label class="form-label">
+                            Kelas
+                        </label>
 
-</form>
+                        <select name="kode_kelas"
+                                class="form-select"
+                                required>
+
+                            <option value="">
+                                -- Pilih Kelas --
+                            </option>
+
+                            @foreach($kelas as $k)
+
+                                <option value="{{ $k->id }}">
+                                    {{ $k->kode_kelas }}
+                                </option>
+
+                            @endforeach
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="d-flex justify-content-between">
+
+                        <a href="/krs-detail"
+                           class="btn btn-secondary">
+
+                            Kembali
+
+                        </a>
+
+                        <div>
+
+                            <button type="reset"
+                                    class="btn btn-danger">
+
+                                Reset
+
+                            </button>
+
+                            <button type="submit"
+                                    class="btn btn-success">
+
+                                Simpan
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+@endsection

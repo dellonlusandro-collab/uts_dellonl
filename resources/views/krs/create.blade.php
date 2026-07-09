@@ -1,80 +1,157 @@
-<form action="/krs/store" method="POST">
+@extends('layouts.app')
 
-    @csrf
+@section('content')
 
-    <label>Mahasiswa</label><br>
+<div class="row justify-content-center">
 
-    <select name="kode_mahasiswa">
+    <div class="col-lg-7">
 
-        <option value="">
-            -- Pilih Mahasiswa --
-        </option>
+        <div class="card shadow">
 
-        @foreach($mahasiswa as $m)
-            <option value="{{ $m->id }}">
-                {{ $m->Fullname }}
-            </option>
-        @endforeach
+            <div class="card-header bg-success text-white">
 
-    </select>
+                <h4 class="mb-0">
+                    Tambah KRS
+                </h4>
 
-    <br><br>
+            </div>
 
-    <label>Tahun Ajaran</label><br>
+            <div class="card-body">
 
-    <input type="text"
-           name="tahun_ajaran">
+                <form action="/krs/store" method="POST">
 
-    <br><br>
+                    @csrf
 
-    <label>Semester</label><br>
+                    <div class="mb-3">
 
-    <input type="radio"
-           name="semester"
-           value="ganjil">
+                        <label class="form-label">
+                            Mahasiswa
+                        </label>
 
-    Ganjil
+                        <select name="kode_mahasiswa"
+                                class="form-select"
+                                required>
 
-    <input type="radio"
-           name="semester"
-           value="genap">
+                            <option value="">
+                                -- Pilih Mahasiswa --
+                            </option>
 
-    Genap
+                            @foreach($mahasiswa as $m)
 
-    <br><br>
+                                <option value="{{ $m->id }}">
+                                    {{ $m->Fullname }}
+                                </option>
 
-    <label>Status</label><br>
+                            @endforeach
 
-    <select name="status">
+                        </select>
 
-        <option value="pending">
-            Pending
-        </option>
+                    </div>
 
-        <option value="approved">
-            Approved
-        </option>
+                    <div class="mb-3">
 
-        <option value="partial">
-            Partial
-        </option>
+                        <label class="form-label">
+                            Tahun Ajaran
+                        </label>
 
-        <option value="declined">
-            Declined
-        </option>
+                        <input type="text"
+                               name="tahun_ajaran"
+                               class="form-control"
+                               placeholder="Contoh: 2026/2027"
+                               required>
 
-    </select>
+                    </div>
 
-    <br><br>
+                    <div class="mb-3">
 
-    <label>Total SKS</label><br>
+                        <label class="form-label d-block">
+                            Semester
+                        </label>
 
-    <input type="number"
-           name="total_sks">
+                        <div class="form-check form-check-inline">
 
-    <br><br>
+                            <input class="form-check-input"
+                                   type="radio"
+                                   name="semester"
+                                   value="ganjil"
+                                   required>
 
-    <input type="submit"
-           value="Simpan">
+                            <label class="form-check-label">
+                                Ganjil
+                            </label>
 
-</form>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+
+                            <input class="form-check-input"
+                                   type="radio"
+                                   name="semester"
+                                   value="genap">
+
+                            <label class="form-check-label">
+                                Genap
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                    <div class="mb-3">
+
+                     
+                    </div>
+
+                    <div class="mb-4">
+
+                        <label class="form-label">
+                            Total SKS
+                        </label>
+
+                        <input type="number"
+                               name="total_sks"
+                               class="form-control"
+                               required>
+
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+
+                        <a href="/krs"
+                           class="btn btn-secondary">
+
+                            Kembali
+
+                        </a>
+
+                        <div>
+
+                            <button type="reset"
+                                    class="btn btn-danger">
+
+                                Reset
+
+                            </button>
+
+                            <button type="submit"
+                                    class="btn btn-success">
+
+                                Simpan
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+@endsection

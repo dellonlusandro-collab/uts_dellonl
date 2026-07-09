@@ -1,48 +1,113 @@
-<form action="{{route('dosen.edit', $dosen->id)}}"  method="post">
-    @csrf
-    <input type="hidden" name="id" value="{{$dosen->id}}">
-    <input type="hidden" name="_method" value="PUT">
-    <table>
-        <tr>
-            <td>Nama Lengkap</td>
-            <td>:</td>
-            <td><input type="text" name="Fullname" value="{{$dosen->Fullname}}"></td>
-        </tr>
-        <tr>
-            <td>Nomor Induk Dosen</td>
-            <td>:</td>
-            <td><input type="text" name="ND" value="{{$dosen->ND}}"></td>
-        </tr>
-        <tr>
-            <td>Tempat Lahir</td>
-            <td>:</td>
-            <td><input type="text" name="Tempat_Lahir" value="{{$dosen->Tempat_Lahir}}"></td>
-        </tr>
-        <tr>
-            <td>Tanggal Lahir</td>
-            <td>:</td>
-            <td><input type="text" name="Tanggal_Lahir" value="{{$dosen->Tanggal_Lahir}}"></td>
-        </tr>
-        <tr>
-            <td>Pendidikan Terakhir</td>
-            <td>:</td>
-            <td><input type="text" name="Pendidikan_Terakhir" value="{{$dosen->Pendidikan_Terakhir}}"></td>
-        </tr>
-        <tr>
-            <td>Jurusan</td>
-            <td>:</td>
-            <td><input type="text" name="Pendidikan_Terakhir" value="{{$dosen->Jurusan}}"></td>
-        </tr>
-        <tr>
-            <td>Alamat</td>
-            <td>:</td>
-            <td><textarea name="Alamat">{{$dosen->Alamat}}</textarea></td>
-        </tr>
-        <tr>
-            <td colspan="3">
-                <input type="submit" value="Update">
-                <input type="reset" value="Clear">
-            </td>
-        </tr>
-    </table>
-</form>
+@extends('layouts.app')
+
+@section('content')
+
+<div class="row justify-content-center">
+
+    <div class="col-lg-8">
+
+        <div class="card shadow">
+
+            <div class="card-header bg-warning text-dark">
+
+                <h4 class="mb-0">
+                    Edit Data Dosen
+                </h4>
+
+            </div>
+
+            <div class="card-body">
+
+                <form action="{{ route('dosen.edit', $dosen->id) }}" method="POST">
+
+                    @csrf
+                    @method('PUT')
+
+                    <div class="mb-3">
+                        <label class="form-label">Nama Lengkap</label>
+                        <input type="text"
+                               name="Fullname"
+                               class="form-control"
+                               value="{{ $dosen->Fullname }}"
+                               required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Nomor Dosen</label>
+                        <input type="text"
+                               name="ND"
+                               class="form-control"
+                               value="{{ $dosen->ND }}"
+                               required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Tempat Lahir</label>
+                        <input type="text"
+                               name="Tempat_Lahir"
+                               class="form-control"
+                               value="{{ $dosen->Tempat_Lahir }}">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Tanggal Lahir</label>
+                        <input type="date"
+                               name="Tanggal_Lahir"
+                               class="form-control"
+                               value="{{ $dosen->Tanggal_Lahir }}">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Pendidikan Terakhir</label>
+                        <input type="text"
+                               name="Pendidikan_Terakhir"
+                               class="form-control"
+                               value="{{ $dosen->Pendidikan_Terakhir }}">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Jurusan</label>
+                        <input type="text"
+                               name="Jurusan"
+                               class="form-control"
+                               value="{{ $dosen->Jurusan }}">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Alamat</label>
+                        <textarea name="Alamat"
+                                  class="form-control"
+                                  rows="4">{{ $dosen->Alamat }}</textarea>
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+
+                        <a href="/dosen" class="btn btn-secondary">
+                            Kembali
+                        </a>
+
+                        <div>
+
+                            <button type="reset" class="btn btn-danger">
+                                Reset
+                            </button>
+
+                            <button type="submit" class="btn btn-warning">
+                                Update
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+@endsection

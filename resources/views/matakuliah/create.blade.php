@@ -1,38 +1,103 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-  </head>
-  <body>
-    <form action="{{route('matakuliah.save')}}"  method="post">
-        @csrf
-        <table class="table table-dark table-striped-columns">
-            <tr>
-                <td>Jurusan</td>
-                <td>:</td>
-                <td><input type="text" name="Jurusan"></td>
-            </tr>
-            <tr>
-                <td>Kode Mata Kuliah</td>
-                <td>:</td>
-                <td><input type="text" name="KodeMK"></td>
-            </tr>
-            <tr>
-                <td>Nama Mata Kuliah</td>
-                <td>:</td>
-                <td><input type="text" name="NamaMK"></td>
-            </tr>
-            <tr>
-                <td colspan="3">
-                    <input type="submit" value="Add">
-                    <input type="reset" value="Clear">
-                </td>
-            </tr>
-        </table>
-    </form>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-  </body>
-</html>
+@extends('layouts.app')
+
+@section('content')
+
+<div class="row justify-content-center">
+
+    <div class="col-lg-7">
+
+        <div class="card shadow">
+
+            <div class="card-header bg-success text-white">
+
+                <h4 class="mb-0">
+                    Tambah Mata Kuliah
+                </h4>
+
+            </div>
+
+            <div class="card-body">
+
+                <form action="{{ route('matakuliah.save') }}" method="POST">
+
+                    @csrf
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Jurusan
+                        </label>
+
+                        <input type="text"
+                               name="Jurusan"
+                               class="form-control"
+                               required>
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Kode Mata Kuliah
+                        </label>
+
+                        <input type="text"
+                               name="KodeMK"
+                               class="form-control"
+                               required>
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Nama Mata Kuliah
+                        </label>
+
+                        <input type="text"
+                               name="NamaMK"
+                               class="form-control"
+                               required>
+
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+
+                        <a href="/matakuliah"
+                           class="btn btn-secondary">
+
+                            Kembali
+
+                        </a>
+
+                        <div>
+
+                            <button type="reset"
+                                    class="btn btn-danger">
+
+                                Reset
+
+                            </button>
+
+                            <button type="submit"
+                                    class="btn btn-success">
+
+                                Simpan
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+@endsection

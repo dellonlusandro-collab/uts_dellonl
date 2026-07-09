@@ -1,191 +1,449 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>ITBSS</title>
+@extends('layouts.app')
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+@section('content')
 
-    <style>
-        body{
-            background-color: #f5f5f5;
-        }
+@guest
 
-        .kampus-img{
-            width: 100%;
-            height: 500px;
-            object-fit: contain;
-            border-radius: 10px;
-        }
+<div class="card shadow">
 
-        footer{
-            background-color: #212529;
-            color: white;
-            margin-top: 50px;
-            padding: 40px 0;
-        }
+    <div class="card-body text-center py-5">
 
-        .footer-text{
-            color: #dcdcdc;
-        }
-    </style>
-</head>
+        <h1 class="display-4 text-primary fw-bold">
 
-<body>
+            Selamat Datang di Sistem Akademik ITBSS
 
-<!-- NAVBAR -->
-<nav class="navbar navbar-expand-lg bg-white shadow-sm">
-    <div class="container">
+        </h1>
 
-        <a class="navbar-brand" href="/">
-            <img src="{{ asset('images/ITB-SS.jpg') }}" width="75">
+        <p class="lead mt-3">
+
+            Silakan login terlebih dahulu untuk mengakses sistem akademik.
+
+        </p>
+
+        <a href="/login" class="btn btn-primary me-2">
+
+            Login
+
         </a>
 
-        <button class="navbar-toggler" type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent">
+        <a href="/register" class="btn btn-success">
 
-            <span class="navbar-toggler-icon"></span>
-        </button>
+            Register
 
-        <div class="collapse navbar-collapse"
-            id="navbarSupportedContent">
+        </a>
 
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
-                <li class="nav-item">
-                    <a class="nav-link active" href="/">Home</a>
-                </li>
-
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle"
-                        href="#"
-                        role="button"
-                        data-bs-toggle="dropdown">
-
-                        Menu
-                    </a>
-
-                    <ul class="dropdown-menu">
-
-                        <li>
-                            <a class="dropdown-item"
-                            href="{{ action([App\Http\Controllers\MahasiswaController::class, 'index']) }}">
-                                Mahasiswa
-                            </a>
-                        </li>
-
-                        <li>
-                            <a class="dropdown-item"
-                            href="{{ action([App\Http\Controllers\DosenController::class, 'index']) }}">
-                                Dosen
-                            </a>
-                        </li>
-
-                        <li>
-                            <a class="dropdown-item"
-                            href="{{ action([App\Http\Controllers\JurusanController::class, 'index']) }}">
-                                Jurusan
-                            </a>
-                        </li>
-
-                        <li>
-                            <a class="dropdown-item"
-                            href="{{ action([App\Http\Controllers\MatakuliahController::class, 'index']) }}">
-                                Mata Kuliah
-                            </a>
-                        </li>
-                         <li>
-                            <a class="dropdown-item"
-                            href="{{ action([App\Http\Controllers\KelasController::class, 'index']) }}">
-                                Kelas
-                            </a>
-                        </li>
-                         <li>
-                            <a class="dropdown-item"
-                            href="{{ action([App\Http\Controllers\KrsController::class, 'index']) }}">
-                                KRS
-                            </a>
-                        </li>
-                         <li>
-                            <a class="dropdown-item"
-                            href="{{ action([App\Http\Controllers\KrsDetailController::class, 'index']) }}">
-                                KRS Detail
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-
-            <form class="d-flex">
-                <input class="form-control me-2"
-                    type="search"
-                    placeholder="Search">
-
-                <button class="btn btn-success"
-                    type="submit">
-                    Search
-                </button>
-            </form>
-
-        </div>
-    </div>
-</nav>
-
-<!-- CONTENT -->
-<div class="container mt-4">
-
-    <div class="row g-4">
-
-        <div class="col-md-12">
-            <img src="{{ asset('images/Website-PMB-26-27.jpg') }}"
-                class="kampus-img">
-        </div>
-
-        <div class="col-md-12">
-            <img src="{{ asset('images/Gedung-ITBSS-scaled.jpg') }}"
-                class="kampus-img">
-        </div>
-
-    </div>
-
-    <!-- CARD -->
-    <div class="card shadow border-0 mt-5">
-        <div class="card-body p-4">
-
-            <h3>Campus Location</h3>
-
-            <p class="mt-3">
-               <a href="https://www.google.com/maps/place/Institut+Teknologi+%26+Bisnis+Sabda+Setia/@-0.0652418,109.3197479,1086m/data=!3m2!1e3!4b1!4m6!3m5!1s0x2e1d5990c1ed4e5f:0x895c21a5be3c6939!8m2!3d-0.0652418!4d109.3197479!16s%2Fg%2F11nx0k3l04?entry=ttu&g_ep=EgoyMDI2MDUxMy4wIKXMDSoASAFQAw%3D%3D"target="_blank"class="text-decoration-none">
-                Jl. Purnama 2, Kecamatan Pontianak Selatan,
-                Kota Pontianak, Kalimantan Barat 78121
-            </p>
-
-        </div>
     </div>
 
 </div>
 
-<!-- FOOTER -->
-<footer>
+@endguest
 
-    <div class="container text-center">
 
-        <img src="https://itbss.ac.id/wp-content/uploads/2021/12/Logo-White.png"
-            width="250"
-            class="mb-3">
+@auth
 
-        <p class="footer-text">
-            Copyright © 2021 Yayasan Gereja Protestan Kampung Bali.
-            All Rights Reserved.
-        </p>
+<div class="row mb-4">
+
+    <div class="col-12">
+
+        <div class="card shadow border-0">
+
+            <div class="card-body text-center py-5">
+
+                <h1 class="fw-bold text-primary">
+
+                    Sistem Akademik ITBSS
+
+                </h1>
+
+                <p class="fs-5 mt-3">
+
+                    Selamat Datang,
+
+                    <strong>{{ Auth::user()->name }}</strong>
+
+                </p>
+
+                <span class="badge bg-primary fs-6">
+
+                    {{ strtoupper(Auth::user()->role) }}
+
+                </span>
+
+            </div>
+
+        </div>
 
     </div>
 
-</footer>
+</div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+@if(Auth::user()->role == 'admin')
 
-</body>
-</html>
+<div class="row g-4 mb-4">
+
+    <div class="col-md-4">
+
+        <div class="card shadow border-0 bg-primary text-white">
+
+            <div class="card-body text-center">
+
+                <h1>{{ $totalMahasiswa }}</h1>
+
+                <h5>👨‍🎓 Mahasiswa</h5>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="card shadow border-0 bg-success text-white">
+
+            <div class="card-body text-center">
+
+                <h1>{{ $totalDosen }}</h1>
+
+                <h5>👨‍🏫 Dosen</h5>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="card shadow border-0 bg-warning text-dark">
+
+            <div class="card-body text-center">
+
+                <h1>{{ $totalJurusan }}</h1>
+
+                <h5>🏛 Jurusan</h5>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="card shadow border-0 bg-info text-white">
+
+            <div class="card-body text-center">
+
+                <h1>{{ $totalMatakuliah }}</h1>
+
+                <h5>📚 Mata Kuliah</h5>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="card shadow border-0 bg-secondary text-white">
+
+            <div class="card-body text-center">
+
+                <h1>{{ $totalKelas }}</h1>
+
+                <h5>🏫 Kelas</h5>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="card shadow border-0 bg-danger text-white">
+
+            <div class="card-body text-center">
+
+                <h1>{{ $totalKrs }}</h1>
+
+                <h5>📝 Total KRS</h5>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="card shadow">
+
+    <div class="card-header bg-dark text-white">
+
+        <h4 class="mb-0">
+
+            🚀 Quick Menu
+
+        </h4>
+
+    </div>
+
+    <div class="card-body">
+
+        <div class="row g-3">
+
+            <div class="col-md-4">
+                <a href="/mahasiswa" class="btn btn-primary w-100">Mahasiswa</a>
+            </div>
+
+            <div class="col-md-4">
+                <a href="/dosen" class="btn btn-success w-100">Dosen</a>
+            </div>
+
+            <div class="col-md-4">
+                <a href="/jurusan" class="btn btn-warning w-100">Jurusan</a>
+            </div>
+
+            <div class="col-md-4">
+                <a href="/matakuliah" class="btn btn-info w-100 text-white">Mata Kuliah</a>
+            </div>
+
+            <div class="col-md-4">
+                <a href="/kelas" class="btn btn-secondary w-100">Kelas</a>
+            </div>
+
+            <div class="col-md-4">
+                <a href="/krs" class="btn btn-danger w-100">KRS</a>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+@endif
+
+@if(Auth::user()->role == 'mahasiswa')
+
+<div class="row g-4">
+
+    <div class="col-md-4">
+
+        <div class="card shadow border-0 bg-primary text-white">
+
+            <div class="card-body text-center">
+
+                <h1>{{ $totalKrs }}</h1>
+
+                <h5>Total KRS</h5>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="card shadow border-0 bg-success text-white">
+
+            <div class="card-body text-center">
+
+                <h1>{{ $totalKrsDetail }}</h1>
+
+                <h5>Total Detail</h5>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="card shadow border-0 bg-warning">
+
+            <div class="card-body text-center">
+
+                <h1>{{ $pendingKrs }}</h1>
+
+                <h5>Pending</h5>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="card shadow mt-4">
+
+    <div class="card-header bg-dark text-white">
+
+        <h4 class="mb-0">
+
+            Menu Mahasiswa
+
+        </h4>
+
+    </div>
+
+    <div class="card-body">
+
+        <div class="row">
+
+            <div class="col-md-6">
+
+               <a href="/krs"
+   class="btn btn-primary w-100">
+
+                    📝 KRS
+
+                </a>
+
+            </div>
+
+            <div class="col-md-6">
+
+              <a href="/krs-detail"
+   class="btn btn-success w-100">
+
+                    📚 Detail KRS
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+@endif
+
+@if(Auth::user()->role == 'dosen')
+
+<div class="row g-4">
+
+    <div class="col-md-3">
+
+        <div class="card shadow border-0 bg-warning">
+
+            <div class="card-body text-center">
+
+                <h1>{{ $pendingKrs }}</h1>
+
+                <h5>Pending KRS</h5>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3">
+
+        <div class="card shadow border-0 bg-success text-white">
+
+            <div class="card-body text-center">
+
+                <h1>{{ $approvedKrs }}</h1>
+
+                <h5>Approved</h5>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3">
+
+        <div class="card shadow border-0 bg-danger text-white">
+
+            <div class="card-body text-center">
+
+                <h1>{{ $declinedKrs }}</h1>
+
+                <h5>Rejected</h5>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3">
+
+        <div class="card shadow border-0 bg-info text-white">
+
+            <div class="card-body text-center">
+
+                <h1>{{ $totalKrsDetail }}</h1>
+
+                <h5>Total Detail</h5>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="card shadow mt-4">
+
+    <div class="card-header bg-dark text-white">
+
+        <h4 class="mb-0">
+
+            Menu Dosen
+
+        </h4>
+
+    </div>
+
+    <div class="card-body">
+
+        <div class="row">
+
+            <div class="col-md-6">
+
+                <a href="/krs"
+                   class="btn btn-warning w-100">
+
+                    ✔ Approval KRS
+
+                </a>
+
+            </div>
+
+            <div class="col-md-6">
+
+                <a href="/krs-detail"
+                   class="btn btn-primary w-100">
+
+                    📄 Detail KRS
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+@endif
+
+@endauth
+
+@endsection

@@ -1,41 +1,127 @@
-<a href={{route('dosen.add')}}>
-                <input type="button" value="Create">
-            </a>
-<table border="1">
-    <thead>
-        <th>No</th>
-        <th>Nama Lengkap</th>
-        <th>Nomor Dosen</th>
-        <th>Tempat Lahir</th>
-        <th>Tanggal Lahir</th>
-        <th>Pendidikan Terakhir</th>
-        <th>Jurusan</th>
-        <th>Alamat</th>
-        <th>Tanggal Dibuat</th>
-        <th>Aksi</th>
-    </thead>
-    @foreach ($dosen as $m)
-    <tr>
-        <td>{{$m->id}}</td>
-        <td>{{$m->Fullname}}</td>
-        <td>{{$m->ND}}</td>
-        <td>{{$m->Tempat_Lahir}}</td>
-        <td>{{$m->Tanggal_Lahir}}</td>
-        <td>{{$m->Pendidikan_Terakhir}}</td>
-        <td>{{$m->Jurusan}}</td>
-        <td>{{$m->Alamat}}</td>
-        <td>{{$m->created_at}}</td>
-        <td>
-            <a href={{route('dosen.update',$m->id)}}>
-                <input type="button" value="Edit">
-            </a>
-            <form action="{{route('dosen.delete', $m->id)}}"  method="post">
-    @csrf
-    <input type="hidden" name="id" value="{{$m->id}}">
-    <input type="hidden" name="_method" value="DELETE">
-    <input type="submit" value="Delete">
-</form>
-        </td>
-    </tr>
-    @endforeach
-</table>
+@extends('layouts.app')
+
+@section('content')
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+    <div>
+        <h2 class="fw-bold">Data Dosen</h2>
+        <p class="text-muted mb-0">
+            Kelola seluruh data dosen.
+        </p>
+    </div>
+
+    <a href="{{ route('dosen.add') }}" class="btn btn-success">
+        + Tambah Dosen
+    </a>
+
+</div>
+
+<div class="card shadow">
+
+    <div class="card-body">
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-hover align-middle">
+
+                <thead class="table-primary">
+
+                    <tr>
+
+                        <th>No</th>
+                        <th>Nama Lengkap</th>
+                        <th>Nomor Dosen</th>
+                        <th>Tempat Lahir</th>
+                        <th>Tanggal Lahir</th>
+                        <th>Pendidikan</th>
+                        <th>Jurusan</th>
+                        <th>Alamat</th>
+                        <th>Dibuat</th>
+                        <th width="180">Aksi</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                @forelse($dosen as $d)
+
+                    <tr>
+
+                        <td>{{ $loop->iteration }}</td>
+
+                        <td>{{ $d->Fullname }}</td>
+
+                        <td>{{ $d->ND }}</td>
+
+                        <td>{{ $d->Tempat_Lahir }}</td>
+
+                        <td>{{ $d->Tanggal_Lahir }}</td>
+
+                        <td>{{ $d->Pendidikan_Terakhir }}</td>
+
+                        <td>{{ $d->Jurusan }}</td>
+
+                        <td>{{ $d->Alamat }}</td>
+
+                        <td>{{ $d->created_at->format('d-m-Y') }}</td>
+
+                        <td>
+
+                            <a href="{{ route('dosen.update',$d->id) }}"
+                               class="btn btn-warning btn-sm">
+
+                                Edit
+
+                            </a>
+
+                            <form
+                                action="{{ route('dosen.delete',$d->id) }}"
+                                method="POST"
+                                class="d-inline">
+
+                                @csrf
+                                @method('DELETE')
+
+                                <button
+                                    type="submit"
+                                    class="btn btn-danger btn-sm"
+                                    onclick="return confirm('Yakin ingin menghapus data dosen ini?')">
+
+                                    Delete
+
+                                </button>
+
+                            </form>
+
+                        </td>
+
+                    </tr>
+
+                @empty
+
+                    <tr>
+
+                        <td colspan="10" class="text-center">
+
+                            Belum ada data dosen.
+
+                        </td>
+
+                    </tr>
+
+                @endforelse
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+@endsection
